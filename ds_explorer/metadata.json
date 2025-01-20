@@ -1,0 +1,58 @@
+[
+    {
+        "FileName": "explorer.py",
+        "Created": 1737340959.2129748,
+        "Modified": 1737340959.2129748,
+        "LastAcces": 1737340959.232975,
+        "Size": 2325,
+        "type_file": ".py"
+    },
+    {
+        "FileName": "abstracter.py",
+        "Created": 1737320599.9014266,
+        "Modified": 1737320599.9014266,
+        "LastAcces": 1737320599.9714265,
+        "Size": 121,
+        "type_file": ".py"
+    },
+    {
+        "FileName": "__init__.py",
+        "Created": 1737320393.3020492,
+        "Modified": 1737320393.3020492,
+        "LastAcces": 1737320393.3920488,
+        "Size": 0,
+        "type_file": ".py"
+    },
+    {
+        "FileName": "metadata.json",
+        "Created": 1737340664.9620507,
+        "Modified": 1737340727.1122463,
+        "LastAcces": 1737340664.9620507,
+        "Size": 1617,
+        "type_file": ".json"
+    },
+    {
+        "FileName": "explorer.cpython-312.pyc",
+        "Created": 1737341000.1131039,
+        "Modified": 1737341000.1131039,
+        "LastAcces": 1737341000.1131039,
+        "Size": 3850,
+        "type_file": ".pyc"
+    },
+    {
+        "FileName": "abstracter.cpython-312.pyc",
+        "Created": 1737330488.76685,
+        "Modified": 1737330488.76685,
+        "LastAcces": 1737331865.412484,
+        "Size": 577,
+        "type_file": ".pyc"
+    },
+    {
+        "FileName": "__init__.cpython-312.pyc",
+        "Created": 1737330488.4668498,
+        "Modified": 1737330488.4668498,
+        "LastAcces": 1737331865.3024812,
+        "Size": 193,
+        "type_file": ".pyc"
+    }
+]
