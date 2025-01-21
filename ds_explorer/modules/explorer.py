@@ -32,9 +32,9 @@ class ExplorerDir(ComposerMeths):
                 if os.path.isfile(path_now):
                     self.details_file.append({
                         "FileName": file,
-                        "Created": os.stat(path_now).st_ctime,
-                        "Modified": os.stat(path_now).st_mtime,
-                        "LastAcces": os.stat(path_now).st_atime,
+                        "Created": time.ctime(os.stat(path_now).st_ctime),
+                        "Modified": time.ctime(os.stat(path_now).st_mtime),
+                        "LastAcces": time.ctime(os.stat(path_now).st_atime),
                         "Directory": os.path.dirname(path_now),
                         "Size": os.stat(path_now).st_size,
                         "type_file": os.path.splitext(file)[1]  # Extract file extension
