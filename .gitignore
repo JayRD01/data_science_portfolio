@@ -635,5 +635,5 @@ FodyWeavers.xsd
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,venv,python,visualstudio,visualstudiocode
 
 
-*.metadata.json
-*.default_metadata.json
+*ds_explorer/metadata.json
+*ds_explorer/sdefault_metadata.json
