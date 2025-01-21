@@ -12,7 +12,7 @@ class ExplorerDir(ComposerMeths):
         """
         self.directory = directory if directory else os.path.dirname(os.path.abspath(__file__))  # Base directory
         # Save output file one level up from the current directory
-        self.output_file = os.path.join(os.path.dirname(self.directory), output_file)
+        self.output_file = os.path.abspath(output_file)
         
         self.details_file = []
         self.max_depth = max_depth
