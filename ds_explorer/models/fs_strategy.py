@@ -11,20 +11,19 @@ class StrategyFS(StrategyMethod):
     def explorer_strat(self, root: str) -> list[FileInfo]:
         items: list[FileInfo] = []
         try:
-            # Request the 'details' namespace to be able to read 'size'
-            for info in self.fs.scandir(root, namespaces=['details']):
+            for entry in self.fs.scandir(root, namespaces=['details']):
                 try:
-                    # Info: name, is_dir and details such as size
-                    name = info.name
-                    is_dir = info.is_dir  # True if it's a directory
+                    # entry: name, is_dir and details such as size
+                    name = entry.name
+                    is_dir = entry.is_dir  
                     size = 0
                     if not is_dir:
                         # 'size' may not be present -> default to 0
-                        size_val = info.get('details', 'size')  # None if not available
+                        size_val = entry.get('details', 'size')  # None if not available
                         size = int(size_val) if size_val is not None else 0
                     items.append(FileInfo(name=name, size=size))
                 except (fserrors.PermissionDenied, fserrors.ResourceNotFound):
                     continue
         except fserrors.ResourceNotFound:
-            return []
+            return items
         return items

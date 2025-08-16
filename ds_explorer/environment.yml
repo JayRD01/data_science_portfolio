@@ -2,7 +2,7 @@ name: data_science_template
 channels:
   - conda-forge
 dependencies:
-  - python=3.11
+  - python=3.13
   - fs
   - pathlib
   - ipykernel

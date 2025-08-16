@@ -1,50 +1,62 @@
-# Data Science Template
+# 🧠 Data Science Portfolio
 
-Welcome to the **Data Science Template**, a highly structured and professional data science template scaffolded by Jay.
+Welcome to **JayRD's Data Science Portfolio**. This repository presents a professional template for data science projects, focused on modularity, thematic organization, and clean architecture based on **SOLID principles** and **design patterns**.
 
-This template aims to boost productivity and maintain clarity in your projects by following best practices in modularity, environment management, and project documentation.
+## 📂 Project Structure
 
----
-
-## 📁 Project Structure
-
-```text
-data_science_template
-├── data/                  # Main data folder (do not upload large datasets to Git)
-│   ├── raw/               # Original, immutable data dumps
-│   ├── processed/         # Cleaned and feature-engineered datasets
-│   └── external/          # Third-party or external data sources
-│
-├── models/                # Strategy pattern (interfaces, context, concrete strategies)
-│
-├── notebooks/             # Jupyter notebooks for exploration and analysis
-│
-├── outputs/               # Final outputs, reports, visualizations, etc.
-│   ├── reports/
-│   │   └── visualization/ # Exported visual plots or report components
-│
-├── scripts/               # Reusable Python scripts (ETL, model training, etc.)
-│
-├── tests/                 # Unit and integration tests
-│
-├── environment.yml        # Conda environment specification
-├── .gitignore             # Git ignore rules (auto-ignore models, datasets, etc.)
-├── LICENSE                # Open source license (MIT)
-├── README.md              # Project overview and usage instructions
-├── setup.py               # For packaging and pip installation (optional)
-├── tasks.py               # Optional automation (e.g., invoke or doit)
-├── install.md             # Optional guide for environment and dependency setup
-├── .here                  # Root marker used by scripts to find project root
-├── main.py                # Entrypoint demonstrating the Strategy context
+```
+data_science_portfolio/
+├── ds_explorer/
+│   ├── main.py
+│   ├── models/
+│   │   ├── os_strategy.py
+│   │   ├── pathlib_strategy.py
+│   │   ├── fs_strategy.py
+│   │   ├── interfaces.py
+│   │   └── root_path.py
+│   ├── .here
+│   └── README.md
+├── notebooks/
+├── outputs/
+├── scripts/
+│   └── merge_branches.sh
+├── tests/
+├── STRATEGY.md
+├── environment.yml
+├── docker-compose.yml
+├── install.md
+├── LICENSE
+└── setup.py
 ```
 
+## 🧩 General Architecture
+
+This project revolves around a single central software that:
+
+- Reads directories.
+- Extracts file metadata.
+- Analyzes the data using tools like **pandas** and **numpy**.
+- Implements **SOLID** principles and the **Strategy** pattern.
+
+Includes three interchangeable strategies:
+
+- `os.scandir`
+- `pathlib.Path`
+- `pyfilesystem (fs)`
+
+And a helper `RootPath` class that dynamically detects the root of the project.
+
+## 🚀 How to Run
+
+```bash
+cd ds_explorer
+python main.py
+```
+
+⚠️ You must execute the script from a directory that contains the `.here` marker file.
+
 ---
 
-## 🧩 Design Notes
+## 📚 More Info
 
-This template uses the **Strategy** design pattern to abstract directory exploration.
-- **Where**: See `models/` (interfaces, context, strategies).
-- **How to use**: Start from `main.py`. Inject a concrete strategy (e.g., `StrategyOs`) into the `StrategyManager` and call `explorer_strat(root)`.
-
-For a detailed explanation focused on `models/` and root `main.py`, see:  
-**[`STRATEGY.md`](./STRATEGY.md)**.
+Check out [`STRATEGY.md`](./STRATEGY.md) to understand how the strategy pattern was implemented and extended.

@@ -6,9 +6,7 @@ class StrategyPathlib(StrategyMethod):
     """Pathlib-backed strategy."""
     def explorer_strat(self, root: str) -> list[FileInfo]:
         items: list[FileInfo] = []
-        p = pathlib.Path(root)
-        if not p.exists():
-            return []
+        p = pathlib.Path(root).parent
         try:
             for entry in p.iterdir():
                 try:
@@ -16,6 +14,6 @@ class StrategyPathlib(StrategyMethod):
                     items.append(FileInfo(name=entry.name, size=int(size)))
                 except (PermissionError, FileNotFoundError):
                     continue
-        except PermissionError:
+        except FileNotFoundError:
             return items
         return items

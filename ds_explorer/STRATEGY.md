@@ -1,82 +1,65 @@
-# Strategy Pattern Overview (Models + Main)
+# 🧩 RootPath Strategy — Dynamic Root Resolver
 
-This project uses the **Strategy** design pattern to decouple *what we do* (list directory entries and return typed objects) from *how we do it* (OS, Pathlib, FS backends).
+## ✨ Introduction
 
-## Scope of this document
-Focus only on:
-- The `models/` folder (interfaces, context, concrete strategies)
-- The `main.py` at the project root
+The `RootPath` class acts as an **intelligent extension** to the Strategy pattern in this project, whose mission is to **automatically resolve the project root** using a `.here` marker file.
 
-## Minimal folder tree
-```text
-.
-├── main.py
-└── models/
-    ├── interfaces.py          # FileInfo (Pydantic) + StrategyMethod (abstract interface)
-    ├── context.py             # StrategyManager (context that delegates to a StrategyMethod)
-    ├── os_strategy.py         # StrategyOs: implementation using os.scandir
-    ├── pathlib_strategy.py    # StrategyPathlib: implementation using pathlib.Path.iterdir
-    └── fs_strategy.py         # StrategyFS: implementation using PyFilesystem2 (optional)
-```
+## 🧠 What Problem Does It Solve?
 
-> **Note:** Class names are suggestions; use the names you actually implemented (e.g., `StrategyOs`, `StrategyPathlib`).
+In multi-layered project structures, manually setting a root path (like `"."` or `"/home/user/project"`) can be fragile. This module:
+
+- Detects the project root from any subdirectory.
+- Ensures consistent paths for strategies like `os`, `pathlib`, or `fs`.
 
 ---
 
-## Participants
-- **FileInfo (model)**: Immutable, validated data object (Pydantic BaseModel) holding `name: str` and `size: int`.
-- **StrategyMethod (strategy interface)**: Declares the operation all strategies must implement:
-  - `explorer_strat(root: str) -> list[FileInfo]`
-- **StrategyManager (context)**: Holds a reference to a `StrategyMethod` and delegates calls to it:
-  - `set_strategy(strategy)` to switch at runtime
-  - `explorer_strat(root)` to execute the current strategy
-- **Concrete Strategies**:
-  - **StrategyOs** (os.scandir)
-  - **StrategyPathlib** (pathlib.Path.iterdir)
-  - **StrategyFS** (PyFilesystem2; optional)
+## ⚙️ How It Works
+
+1. **Searches** for the `.here` file starting from the given `root`'s parent.
+2. If found, **resolves** that path as the true root.
+3. If not found, **falls back** to the original root.
+4. Then, it **calls the assigned strategy**.
 
 ---
 
-## Collaboration and data flow
-1. **Client code** creates a `StrategyManager` with a chosen strategy (e.g., `StrategyOs()`).
-2. Client calls `manager.explorer_strat(root)`.  
-3. **StrategyManager** delegates to the injected **Strategy**.
-4. **Concrete Strategy** scans `root`, creates **FileInfo** objects, returns `list[FileInfo]`.
-5. Client receives a uniform, typed result regardless of the backend used.
+## 🧩 Design Pattern Used
 
-This keeps the public API stable while allowing you to plug in new backends without changing calling code.
+### 📐 Template Method Pattern
 
----
+`RootPath` behaves like a template that executes a preliminary step (resolving the root) before invoking `explorer_strat()`.
 
-## Why Strategy here?
-- **Open/Closed**: Add new backends without modifying the context or existing strategies.
-- **Single Responsibility**: Each strategy owns only one concern: *how* to read entries from a backend.
-- **Liskov Substitution**: Any `StrategyMethod` implementation can replace another transparently.
-- **Dependency Inversion**: The context depends on an abstraction (`StrategyMethod`), not concrete modules.
+### 🎁 Light Decorator
+
+It doesn't alter the original strategies. It simply adjusts the `root` value passed to them.
 
 ---
 
-## Minimal usage example (pseudo-code)
+## 🛠 Usage Example
+
 ```python
-# main.py (minimal)
-from models.context import StrategyManager
+from models.root_path import RootPath
 from models.os_strategy import StrategyOs
-# from models.pathlib_strategy import StrategyPathlib
+from models.interfaces import StrategyManager
 
-if __name__ == "__main__":
-    manager = StrategyManager(StrategyOs())
-    entries = manager.explorer_strat(".")
-    for fi in entries[:10]:
-        print(f"{fi.name} - {fi.size} bytes")
-
-    # Switch strategy at runtime (same interface, same return type)
-    # manager.set_strategy(StrategyPathlib())
-    # entries = manager.explorer_strat(".")
+rootpath = RootPath(root=".", marker=".here")
+manager = StrategyManager(StrategyOs(), rootpath)
+result = manager.explorer_strat(".")
 ```
 
 ---
 
-## Extending the system
-- Create a new class implementing `StrategyMethod` (e.g., `StrategyS3`, `StrategyZip`).
-- Ensure it returns `list[FileInfo]` with the same semantics (size=0 for directories, etc.).
-- No changes required in `StrategyManager` or client code.
+## ✅ Benefits
+
+- 🔄 Flexible and extensible.
+- 🧼 Follows the Single Responsibility Principle (SRP).
+- 📌 Useful in deployments where working paths change dynamically.
+
+---
+
+## 📝 Requirements
+
+You must have a `.here` file at the intended project root:
+
+```bash
+touch ds_explorer/.here
+```
