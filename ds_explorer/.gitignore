@@ -1,0 +1,101 @@
+# ----------------------------
+# 🐍 Python bytecode & caches
+# ----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ----------------------------
+# 🧪 Testing & coverage
+# ----------------------------
+.coverage
+.coverage.*
+.cache/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.tox/
+.hypothesis/
+htmlcov/
+
+# ----------------------------
+# 📓 Jupyter notebooks
+# ----------------------------
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# ----------------------------
+# ⚙️ Virtual environments
+# ----------------------------
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+.python-version
+
+# ----------------------------
+# 🔒 Environment & secrets
+# ----------------------------
+*.env
+.envrc
+.secret
+*.lock
+
+# ----------------------------
+# 💻 IDE/editor configs
+# ----------------------------
+.vscode/
+.idea/
+*.code-workspace
+
+# ----------------------------
+# 📊 User-generated data
+# ----------------------------
+data/
+*.csv
+*.tsv
+*.parquet
+*.h5
+*.hdf5
+*.db
+*.sqlite
+*.sql
+*.sav
+*.pkl
+*.joblib
+
+# ----------------------------
+# 🚀 Build & packaging
+# ----------------------------
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+dist/
+build/
+.eggs/
+develop-eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+.installed.cfg
+
+# ----------------------------
+# ⏱ Logs and temporary files
+# ----------------------------
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# 🔧 Cookiecutter temp files
+# ----------------------------
+year.txt
