@@ -15,7 +15,7 @@ data_science_template
 │   ├── processed/         # Cleaned and feature-engineered datasets
 │   └── external/          # Third-party or external data sources
 │
-├── models/                # Trained and serialized model objects (.pkl, .joblib, etc.)
+├── models/                # Strategy pattern (interfaces, context, concrete strategies)
 │
 ├── notebooks/             # Jupyter notebooks for exploration and analysis
 │
@@ -35,3 +35,16 @@ data_science_template
 ├── tasks.py               # Optional automation (e.g., invoke or doit)
 ├── install.md             # Optional guide for environment and dependency setup
 ├── .here                  # Root marker used by scripts to find project root
+├── main.py                # Entrypoint demonstrating the Strategy context
+```
+
+---
+
+## 🧩 Design Notes
+
+This template uses the **Strategy** design pattern to abstract directory exploration.
+- **Where**: See `models/` (interfaces, context, strategies).
+- **How to use**: Start from `main.py`. Inject a concrete strategy (e.g., `StrategyOs`) into the `StrategyManager` and call `explorer_strat(root)`.
+
+For a detailed explanation focused on `models/` and root `main.py`, see:  
+**[`STRATEGY.md`](./STRATEGY.md)**.
