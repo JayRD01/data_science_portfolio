@@ -1,36 +1,40 @@
-# 🧩 RootPath Strategy — Dynamic Root Resolver
+# 🧩 ds_explorer — Core Engine
 
-## ✨ Introduction
-
-The `RootPath` class acts as an **intelligent extension** to the Strategy pattern in this project, whose mission is to **automatically resolve the project root** using a `.here` marker file.
-
-## 🧠 What Problem Does It Solve?
-
-In multi-layered project structures, manually setting a root path (like `"."` or `"/home/user/project"`) can be fragile. This module:
-
-- Detects the project root from any subdirectory.
-- Ensures consistent paths for strategies like `os`, `pathlib`, or `fs`.
+This package contains the **core engine** of the Data Science Portfolio project.  
+It focuses on exploring directories, extracting metadata, and applying **design patterns** for flexibility and extensibility.
 
 ---
 
-## ⚙️ How It Works
+## 📂 Key Components
 
-1. **Searches** for the `.here` file starting from the given `root`'s parent.
-2. If found, **resolves** that path as the true root.
-3. If not found, **falls back** to the original root.
-4. Then, it **calls the assigned strategy**.
+- **`main.py`** → Entry point of the project. Runs the selected exploration strategy and coordinates data processing.  
+- **`models/`** → Implements the **Strategy Pattern** and related helpers:  
+  - `os_strategy.py` → Uses `os.scandir`.  
+  - `pathlib_strategy.py` → Uses `pathlib.Path`.  
+  - `fs_strategy.py` → Uses **pyfilesystem2**.  
+  - `root_path.py` → Dynamic resolver for project root (via `.here` marker).  
+  - `context_manager.py` → Manages execution context for strategies.  
+  - `strategy_protocols.py` → Typed contracts that define expected behavior.  
 
 ---
 
-## 🧩 Design Pattern Used
+## 🧩 Design Patterns in Use
 
-### 📐 Template Method Pattern
+### 🎯 Strategy Pattern
+Core logic for exploring filesystems is abstracted as interchangeable strategies:  
+- OS strategy (`os.scandir`)  
+- Pathlib strategy (`pathlib.Path`)  
+- FS strategy (`pyfilesystem2`)  
 
-`RootPath` behaves like a template that executes a preliminary step (resolving the root) before invoking `explorer_strat()`.
+This ensures the system can **swap implementations easily** while maintaining the same interface.
 
-### 🎁 Light Decorator
+### 📐 Template Method (RootPath)
+`RootPath` acts as a **pre-processor** before strategy execution:  
+- Looks for a `.here` marker file to resolve the real root path.  
+- Falls back to the provided path if not found.  
+- Passes the resolved root to the active strategy.  
 
-It doesn't alter the original strategies. It simply adjusts the `root` value passed to them.
+It behaves like a **template method**, adding logic before delegating to the selected strategy.  
 
 ---
 
@@ -49,16 +53,15 @@ result = manager.explorer_strat(".")
 ---
 
 ## ✅ Benefits
-
-- 🔄 Flexible and extensible.
-- 🧼 Follows the Single Responsibility Principle (SRP).
-- 📌 Useful in deployments where working paths change dynamically.
+- 🔄 Flexible and extensible architecture.  
+- 🧼 Clean separation of concerns.  
+- 📌 Dynamic root detection with `.here`.  
+- 🚀 Easy to extend with new strategies.  
 
 ---
 
 ## 📝 Requirements
-
-You must have a `.here` file at the intended project root:
+A `.here` file must exist at the intended project root:
 
 ```bash
 touch ds_explorer/.here

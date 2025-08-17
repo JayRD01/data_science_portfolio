@@ -1,50 +1,54 @@
 # 🧠 Data Science Portfolio
 
-Welcome to **JayRD's Data Science Portfolio**. This repository presents a professional template for data science projects, focused on modularity, thematic organization, and clean architecture based on **SOLID principles** and **design patterns**.
+Welcome to **JayRD's Data Science Portfolio**.  
+This repository is a **professional template for data science projects**, with emphasis on:
+
+- 🧩 **Clean architecture** and modular design.  
+- 📐 **SOLID principles**.  
+- 🎯 **Design patterns** for flexibility and maintainability.  
+
+---
 
 ## 📂 Project Structure
 
-```
+```bash
 data_science_portfolio/
-├── ds_explorer/
+├── ds_explorer/               # Core package (strategies, main engine)
 │   ├── main.py
 │   ├── models/
-│   │   ├── os_strategy.py
-│   │   ├── pathlib_strategy.py
-│   │   ├── fs_strategy.py
-│   │   ├── interfaces.py
-│   │   └── root_path.py
-│   ├── .here
-│   └── README.md
-├── notebooks/
-├── outputs/
-├── scripts/
-│   └── merge_branches.sh
-├── tests/
-├── STRATEGY.md
-├── environment.yml
-├── docker-compose.yml
-├── install.md
+│   ├── notebooks/
+│   ├── outputs/
+│   ├── scripts/
+│   ├── tests/
+│   ├── STRATEGY.md
+│   ├── environment.yml
+│   ├── requirements.txt
+│   ├── docker-compose.yml
+│   ├── install.md
+│   ├── tasks.py
+│   └── setup.py
 ├── LICENSE
-└── setup.py
+└── README.md   <-- this file
 ```
 
-## 🧩 General Architecture
+### 🔑 Main folders
+- **`ds_explorer/`** → Core implementation (strategies, entrypoint, utilities).  
+- **`notebooks/`** → Jupyter notebooks (exploration, visualization templates).  
+- **`outputs/`** → Generated reports, visualizations, and analysis results.  
+- **`scripts/`** → Helper scripts (e.g. branch merge automation).  
+- **`tests/`** → Unit tests for strategies and helpers.  
 
-This project revolves around a single central software that:
+---
 
-- Reads directories.
-- Extracts file metadata.
-- Analyzes the data using tools like **pandas** and **numpy**.
-- Implements **SOLID** principles and the **Strategy** pattern.
+## 🛠 Environments Available
 
-Includes three interchangeable strategies:
+- **Conda** → `environment.yml`  
+- **pip/venv** → `requirements.txt`  
+- **Docker** → `docker-compose.yml`  
 
-- `os.scandir`
-- `pathlib.Path`
-- `pyfilesystem (fs)`
+Each setup provides a reproducible environment for data exploration, visualization, and running the project.
 
-And a helper `RootPath` class that dynamically detects the root of the project.
+---
 
 ## 🚀 How to Run
 
@@ -53,10 +57,10 @@ cd ds_explorer
 python main.py
 ```
 
-⚠️ You must execute the script from a directory that contains the `.here` marker file.
+⚠️ Must be executed from a directory containing the `.here` marker file.
 
 ---
 
-## 📚 More Info
+## 📚 More Information
 
-Check out [`STRATEGY.md`](./STRATEGY.md) to understand how the strategy pattern was implemented and extended.
+For detailed insights into the **Strategy Pattern** and the **RootPath helper**, see [ds_explorer/STRATEGY.md](./ds_explorer/STRATEGY.md).
