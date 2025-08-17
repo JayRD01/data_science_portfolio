@@ -1,5 +1,5 @@
-from .interfaces import FileInfo
-from .interfaces import StrategyMethod
+from .strategy_protocols import FileInfo
+from .strategy_protocols import StrategyMethod
 import pathlib
 
 class StrategyPathlib(StrategyMethod):
