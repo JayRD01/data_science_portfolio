@@ -10,8 +10,7 @@ class RootPath:
             marker_path = directory / marker
             if marker_path.exists():
                 return str(directory)
-        
-        # Mejor mensaje de error si no se encuentra
+
         raise FileNotFoundError(
             f"\n❌ Marker file '{marker}' not found.\n"
             f"👉 Please create a '{marker}' file at the root of your project.\n"
