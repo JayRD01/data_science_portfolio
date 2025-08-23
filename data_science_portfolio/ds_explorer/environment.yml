@@ -1,0 +1,44 @@
+name: data_science_template
+channels:
+  - conda-forge
+dependencies:
+  # Core
+  - python=3.12
+  - ipykernel
+  - jupyterlab
+  - notebook
+  - ipywidgets
+
+  # Data handling
+  - numpy
+  - pandas
+  - xarray
+  - pyjanitor
+  - pytables
+
+  # Math & stats
+  - scipy
+  - statsmodels
+  - scikit-learn
+  - sympy
+
+  # Visualization
+  - matplotlib
+  - seaborn
+  - plotly
+  - missingno
+  - pandas-flavor
+
+  # Utilities
+  - fs
+  - pathlib
+
+  # Pip-only packages
+  - pip
+  - pip:
+      - pyprojroot
+      - sweetviz
+      - ydata-profiling
+      - tqdm
+      - loguru
+      - rich
