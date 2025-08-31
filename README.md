@@ -4,6 +4,9 @@
 Designed for extensibility, clarity, and real-world applications in data science workflows.
 
 > 🔗 GitHub: [JayRD01](https://github.com/JayRD01)
+> 
+
+![me](https://github.com/user-attachments/assets/f2ebbbb1-cfa8-44c3-97ce-39640dad55b7)
 
 ---
 
