@@ -1,4 +1,4 @@
-# Data Science Template — Installation Guide
+# ds_missing_data — Installation Guide
 
 ## 📦 Prerequisites
 
@@ -12,13 +12,13 @@
 Using **conda**:
 ```bash
 conda env create -f environment.yml
-conda activate data_science_template
+conda activate ds_missing_data
 ```
 
 Or with **mamba**:
 ```bash
 mamba env create -f environment.yml
-mamba activate data_science_template
+mamba activate ds_missing_data
 ```
 
 The environment now includes all dependencies required to run the project.
@@ -33,7 +33,7 @@ To move beyond notebook prototyping, install the project module in editable mode
 pip install --editable .
 ```
 
-Now you can import your local modules directly from the `data_science_template/` folder.
+Now you can import your local modules directly from the `ds_missing_data/` folder.
 
 Enable autoreload in Jupyter for smooth development:
 ```python
@@ -43,7 +43,7 @@ Enable autoreload in Jupyter for smooth development:
 
 Example usage:
 ```python
-from data_science_template.utils.paths import data_dir
+from ds_missing_data.utils.paths import data_dir
 data_dir()
 ```
 

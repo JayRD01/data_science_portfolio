@@ -6,16 +6,16 @@ def readme() -> str:
     return open(os.path.join(os.path.dirname(__file__), 'README.md'), encoding='utf-8').read()
 
 setup(
-    name='data_science_template',
+    name='ds_missing_data',
     version='0.1.0',
-    author='Jay',
+    author='JayRD',
     author_email='...',
     description='A professional and reusable data science project template.',
     long_description=readme(),
     long_description_content_type='text/markdown',
     python_requires='>=3.8',
     license='MIT',
-    url='https://github.com/JayRD01/data_science_template',
+    url='https://github.com/JayRD01/ds_missing_data',
     packages=find_packages(),
     include_package_data=True,
     classifiers=[
