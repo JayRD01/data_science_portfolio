@@ -1,10 +1,7 @@
-🚀 ds_explorer
-
-**Modular File System Explorer built with Python**  
-Designed for extensibility, clarity, and real-world applications in data science workflows.
+**Surgical precision, architect’s vision, and value-first data products.**  
+I design modular systems that turn raw data into decisions — fast, reproducible, and business-oriented.
 
 > 🔗 GitHub: [JayRD01](https://github.com/JayRD01)
-> 
 
 ![me](https://github.com/user-attachments/assets/f2ebbbb1-cfa8-44c3-97ce-39640dad55b7)
 
@@ -12,102 +9,167 @@ Designed for extensibility, clarity, and real-world applications in data science
 
 ## 🧠 Overview
 
-`ds_explorer` is a **strategy-based system** for exploring files and directories using interchangeable backends. It allows seamless switching between file system access methods like `os`, `pathlib`, and `PyFilesystem2`—all without altering the core execution logic.
+This portfolio is a **single, coherent framework** for building data products that scale across teams and timelines.  
+It focuses on three pillars: **Design Patterns**, **Analytical Rigor**, and **Operational Excellence** (environments & automation).  
+The mission is simple: **translate code into time saved, risk reduced, and value delivered** — in the language stakeholders understand.
 
-This architecture demonstrates clean code practices and SOLID principles, with a particular focus on the **Strategy Design Pattern**.
+> Where others see tables, I see **living structures**; where others ship notebooks, I ship **decisions**. 🏛️📊
+
+---
+## 🧾 Stakeholder Lens (what you get)
+
+- **Time**: automated checks & clear contracts cut iteration cycles.  
+- **Clarity**: patterns make intent obvious; onboarding is faster.  
+- **Reliability**: environments are predictable; results are reproducible.  
+- **Leverage**: microservices expose insights where they’re needed (dashboards, apps, notebooks).
+
+> I combine patterns, analysis, and vision to create what others only imagine — and ship value without wasting anyone’s time. 🗽
 
 ---
 
-## ⚙️ Architecture
+## 🧩 Patterns Roadmap (toward 24 distinct patterns)
 
-### Core Components
+Each module explores **different patterns** so the whole portfolio converges to **24+**. The set includes (non‑exhaustive):  
+**Strategy, Template Method, Adapter, Decorator, Builder, Singleton, Proxy, Facade, Observer, Factory Method, Abstract Factory, Command, Composite, Iterator, State, Mediator, Memento, Prototype, Flyweight, Chain of Responsibility, Interpreter, Visitor, Bridge**, plus pragmatic patterns (e.g., **Repository/Specification/Service Locator**) when they better serve data workflows.
 
-| Component        | Responsibility                                      |
-|------------------|-----------------------------------------------------|
-| `StrategyManager`| Orchestrates strategy injection and execution       |
-| `StrategyMethod` | Protocol defining the required strategy interface   |
-| `FileInfo`       | Immutable data model representing file metadata     |
-| `RootPath`       | Locates the project root dynamically using a `.here` marker file |
+- **Why patterns?** They compress experience into structure: fewer surprises, faster onboarding, safer changes.  
+- **How they help data science?** They separate **analysis** from **plumbing**, enabling reliable EDA, feature work, and production hand‑off without rewrites.
 
 ---
 
-## 🛠️ Strategies Implemented
+## 🧪 Engineering Tenets
 
-Each strategy implements the `explorer_strat(root: str) -> list[FileInfo]` method.
-
-| Strategy Class     | Backend Used             | Description                                       |
-|--------------------|--------------------------|---------------------------------------------------|
-| `StrategyOs`       | `os.scandir()`           | Low-level system scan, efficient for large dirs   |
-| `StrategyPathlib`  | `pathlib.Path.iterdir()` | High-level Pythonic interface for path handling   |
-| `StrategyFS`       | `PyFilesystem2` (`fs`)   | Virtual file systems: memory, FTP, S3, etc.       |
+- **SOLID** by design: contracts vs. implementations, single-responsibility classes, small composable units.  
+- **Typed, immutable models** for clarity and safer refactors.  
+- **Explicit errors & guardrails**: traceable failures over silent bugs.  
+- **Reproducibility first**: deterministic seeds, pinned envs, Docker parity.  
+- **Docs that explain *why*** (trade-offs & impact), not just *what*.
 
 ---
 
-## 📁 Root Path Resolution
+## 🧭 Repository Layout (core idea)
 
-`RootPath` recursively searches for a `.here` marker starting from the current working directory up to the filesystem root.  
-If the file is not found, the program will raise a clear exception with instructions.
-
-> 📌 To use this system, **create a `.here` file** in the root directory of your project:
->
-> ```bash
-> touch /your/project/path/.here
-> ```
-
----
-
-## ✅ Key Features
-
-- 🔄 **Pluggable Strategy System**  
-  Easily add new file exploration strategies without modifying existing code.
-
-- 🧪 **Testable & Modular Design**  
-  Clear separation of concerns and reusable components.
-
-- 🧩 **Cross-platform & Portable**  
-  No hardcoded paths; root detection adapts to the environment.
-
-- 🔐 **Robust Error Handling**  
-  Clean exceptions with user-friendly guidance.
-
----
-
-## 🔍 Example Use Case
-
-```python
-from models.context_manager import StrategyManager
-from models.os_strategy import StrategyOs
-from models.root_path import RootPath
-
-# Resolve the project root dynamically
-root_path = RootPath(marker=".here", root=".")  
-
-# Use OS strategy to explore
-manager = StrategyManager(strategy=StrategyOs(), rootpath=root_path)
-files = manager.explorer_strat()
-
-for file in files[:5]:
-    print(f"{file.name} — {file.size} bytes")
+```
+src/
+  core/
+    contracts/         # Protocols / ABCs: the *what*
+    implementations/   # Concrete classes: the *how*
+  utils/               # Cross-cutting helpers (e.g., root path, logging, io)
+  app/                 # Microservices (Flask/FastAPI) for demos & orchestration
+tests/                 # Lives on a dedicated testing branch to avoid team friction
 ```
 
+- `core/` enforces the boundary: **contracts define behavior; implementations plug in**.
+- `utils/` hosts reusables shared by any module.
+- `app/` is the gateway to **microservices** that expose analyses & pipelines via HTTP.
+
+> **Testing policy:** The `tests/` tree is maintained in a **dedicated branch** focused on experimentation and CI, so day‑to‑day changes in main don’t block teammates.
+
 ---
 
-## 📦 Dependencies
+## 🧰 Environments & Reproducibility
 
-- Python 3.10+
-- `pydantic`
-- `fs` (PyFilesystem2)
+- **py-venv** for lightweight local work.  
+- **Conda/Mamba** for scientific stacks and env locking.  
+- **Docker** for environment parity; **Docker Compose** to run multiple services in parallel (e.g., API + generator + store).
 
-Install dependencies via:
+**Example (concept) – docker-compose.yml**
 
+```yaml
+version: "3.9"
+services:
+  api:
+    build: ./src/app/api
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    ports: ["8000:8000"]
+    depends_on: [generator]
+  generator:
+    build: ./src/app/generator
+    command: python run.py
+  store:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: example
+    ports: ["5432:5432"]
+```
+
+> Swap **Flask** or **FastAPI** freely inside `app/`; patterns insulate the rest.
+
+---
+
+## 🧪 Reusable Proxy Example (RootPath)
+
+A tiny, practical **Proxy** that centralizes *where the project root is* so the rest of the code stays ignorant of the filesystem.  
+Drop it into `src/utils/` and import it anywhere — the code never hardcodes paths.
+
+```python
+from pathlib import Path
+import os
+
+class RootPath:
+    def __init__(self, marker=".here", root="."):
+        self.root = self.resolve(Path(root), marker)
+        print(f"Now you are here: {self.root}")
+
+    def resolve(self, start_path: Path, marker: str) -> str:
+        search_path = start_path.resolve()
+        for directory in [search_path] + list(search_path.parents):
+            marker_path = directory / marker
+            if marker_path.exists():
+                return str(directory)
+
+        raise FileNotFoundError(
+            f"Marker file '{marker}' not found.\n"
+            f"Please create a '{marker}' file at the project root.\n"
+            f"Search started from: {search_path}\n"
+        )
+
+    def __str__(self):
+        return self.root
+
+# Create instance -> finds the project root
+project_root = RootPath()
+root_path = Path(str(project_root))
+
+# Change the current working directory to the project root
+os.chdir(root_path)
+
+# Confirm current working directory
+print("Current working directory:", Path.cwd())
+```
+
+**Why this is a Proxy:** it stands in front of the filesystem and **controls access** to the “real” root, enforcing a single, consistent source of truth. Benefits: no hardcoded paths, easier testing, safer scripts, simpler Docker mounts.
+
+---
+
+## ⚙️ Operating Modes (quick start)
+
+### Local (py-venv)
 ```bash
+python -m venv .venv
+source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
 pip install -r requirements.txt
 ```
 
+### Conda / Mamba
+```bash
+mamba env create -f environment.yml  # or: conda env create -f environment.yml
+mamba activate dsp                   # or: conda activate dsp
+```
+
+### Docker
+```bash
+docker build -t dsp:latest .
+docker run --rm -it -p 8000:8000 dsp:latest
+```
+
+### Docker Compose (parallel services)
+```bash
+docker compose up --build
+```
+
 ---
 
-## 📚 License
+## 📬 Contact
 
-This project is released under the [MIT License](LICENSE).
-
----
+Issues & collab → [@JayRD01](https://github.com/JayRD01)
