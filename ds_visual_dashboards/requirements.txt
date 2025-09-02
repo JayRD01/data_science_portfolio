@@ -1,0 +1,11 @@
+pandas>=2.2
+numpy>=1.26
+SQLAlchemy>=2.0
+requests>=2.32
+matplotlib>=3.9
+jupyterlab>=4.2
+ipykernel>=6.29
+# Choose one DB driver as needed:
+# psycopg2-binary>=2.9  # PostgreSQL
+# pymysql>=1.1          # MySQL/MariaDB
+# pyodbc>=5.1           # SQL Server

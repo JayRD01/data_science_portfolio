@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+.env
+# OS
+.DS_Store
+Thumbs.db
+# BI exports
+reports/images/*.png
