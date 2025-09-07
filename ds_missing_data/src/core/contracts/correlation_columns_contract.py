@@ -24,17 +24,3 @@ class CorrColumnsContract(ABC):
     def correlate_pairs(self):
         # Enforces implementation in subclasses
         raise NotImplementedError("Subclasses must implement the correlate_pairs method.")
-    
-# 🧩 Contratos robustos con abstractismo (ABC)
-
-# __init__ – Validaciones de entrada
-# - if not isinstance(parametro, tipo_esperado) → TypeError
-#   Evita tipos incorrectos desde el origen.
-# - if parametro está vacío → ValueError
-#   Impide instanciación con datos sin contenido.
-# - if parámetro no cumple condiciones internas (ej. columnas válidas) → ValueError
-#   Protege contra estructuras inválidas o insuficientes.
-
-# Métodos decorados con @abstractmethod
-# - raise NotImplementedError("Mensaje claro")
-#   Obliga a implementar el método en subclases. Evita contratos incumplidos.
