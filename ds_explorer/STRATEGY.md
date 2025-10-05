@@ -8,13 +8,13 @@ It focuses on exploring directories, extracting metadata, and applying **design 
 ## 📂 Key Components
 
 - **`main.py`** → Entry point of the project. Runs the selected exploration strategy and coordinates data processing.  
-- **`models/`** → Implements the **Strategy Pattern** and related helpers:  
+- **`src/core/implementations/`** → Implements the **Strategy Pattern** and related helpers:  
   - `os_strategy.py` → Uses `os.scandir`.  
   - `pathlib_strategy.py` → Uses `pathlib.Path`.  
   - `fs_strategy.py` → Uses **pyfilesystem2**.  
   - `root_path.py` → Dynamic resolver for project root (via `.here` marker).  
   - `context_manager.py` → Manages execution context for strategies.  
-  - `strategy_protocols.py` → Typed contracts that define expected behavior.  
+  - `strategy_contract` → Typed contracts that define expected behavior.  
 
 ---
 
@@ -41,9 +41,9 @@ It behaves like a **template method**, adding logic before delegating to the sel
 ## 🛠 Usage Example
 
 ```python
-from models.root_path import RootPath
-from models.os_strategy import StrategyOs
-from models.interfaces import StrategyManager
+from src.utils.root_path import RootPath
+from src.core.implementations.os_strategy_run import StrategyOs
+from src.core.implementations.context_manager import StrategyManager
 
 rootpath = RootPath(root=".", marker=".here")
 manager = StrategyManager(StrategyOs(), rootpath)

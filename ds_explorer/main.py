@@ -7,11 +7,11 @@
 #   cd path/to/ds_explorer
 #   python main.py
 # ─────────────────────────────────────────────────────────────
-from models.context_manager import StrategyManager
-from models.os_strategy import StrategyOs
-from models.pathlib_strategy import StrategyPathlib
-from models.fs_strategy import StrategyFS
-from models.root_path import RootPath
+from src.core.implementations.context_manager import StrategyManager
+from src.core.implementations.os_strategy_run import StrategyOs
+from src.core.implementations.pathlib_strategy import StrategyPathlib
+from src.core.implementations.fs_strategy_run import StrategyFS
+from src.utils.root_path import RootPath
 from fs.osfs import OSFS
 
 if __name__ == "__main__":
