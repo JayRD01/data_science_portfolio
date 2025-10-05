@@ -56,12 +56,14 @@ class NullReportImpl(NullReportContract):
                 dtype=lambda s: s["variable"].map(lambda col: df[col].dtype)
             )
         )
+        
 
         print("To visualize correlation plots, refer to:")
         print("correlation_columns_run.py, corr_filterproxy_run.py, and corr_plotter_run.py")
         print("If you're using a Jupyter notebook, run this with display(summary)")
 
-        return summary
+        return pd.DataFrame(summary)
+
 
 
 @pd.api.extensions.register_dataframe_accessor("missing")
@@ -72,4 +74,4 @@ class MissingAccessor:
         self._impl = NullReportImpl(pandas_obj)
 
     def summary(self) -> pd.DataFrame:
-        return self._impl.summary()
+        return pd.DataFrame(self._impl.summary())
