@@ -35,8 +35,7 @@ class TestStrategies(unittest.TestCase):
             StrategyPathlib(),
         ]
 
-        # Project root resolver (via marker file)
-        self.root = RootPath(marker='.here', root='.')
+        #self.root = RootPath(marker='.here', root='.')
 
     def tearDown(self):
         self.fsys.close()
@@ -104,13 +103,19 @@ class TestStrategies(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+    
+# $ conda pip install coverage
+# $ Run tests with coverage and show missing lines
+# $ coverage run -m unittest discover -s tests
+# $ coverage report -m
+
 
 # Run the test suite with unittest’s discovery, suppressing warnings and buffering output.
 # Variant A (verbose): shows each test name and status (uncomment to use)
 # python -m unittest discover -s tests -p "test_*.py" -b -v
 
 # Variant B (quiet): minimal output; hides prints unless a test fails (this one runs)
-# python -W ignore -m unittest discover -s tests -p "test_*.py" -b -q
+# python -W ignore -m unittest discover -s tests -p "test_*.py" -b -q -v
 
 # Flags explained:
 # -W ignore       → silence all Python warnings for this run
