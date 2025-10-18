@@ -104,25 +104,3 @@ class TestStrategies(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
     
-# $ conda pip install coverage
-# $ Run tests with coverage and show missing lines
-# $ coverage run -m unittest discover -s tests
-# $ coverage report -m
-
-
-# Run the test suite with unittest’s discovery, suppressing warnings and buffering output.
-# Variant A (verbose): shows each test name and status (uncomment to use)
-# python -m unittest discover -s tests -p "test_*.py" -b -v
-
-# Variant B (quiet): minimal output; hides prints unless a test fails (this one runs)
-# python -W ignore -m unittest discover -s tests -p "test_*.py" -b -q -v
-
-# Flags explained:
-# -W ignore       → silence all Python warnings for this run
-# -m unittest     → run the unittest module as a script
-# discover        → auto-discover tests
-# -s tests        → search in the 'tests' directory
-# -p "test_*.py"  → match test files by pattern
-# -b              → buffer stdout/stderr; only show prints on failures/errors
-# -v              → verbose output (list every test with OK/FAIL)  [use either -v or -q, not both]
-# -q              → quiet output (minimal)
